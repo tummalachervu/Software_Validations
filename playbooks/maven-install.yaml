@@ -1,0 +1,18 @@
+---
+
+  - hosts: Gopher-dev
+    gather_facts: False
+    remote_user: ctummalachervu
+    become: yes
+
+    tasks:
+      - name: Moving the Maven software to Remote server
+        copy:
+          src: /apps/software/playbooks/deploy/apache-maven-3.5.4-bin.tar.gz
+          dest: /apps/software/
+
+      - name: Unzipping the software
+        shell: cd /apps/software; tar -zxf apache-maven-3.5.4-bin.tar.gz -C /apps;
+
+      - name: Create a softlink for Maven
+        shell: "ln -s apache-maven-3.5.4 maven"
