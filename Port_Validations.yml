@@ -1,0 +1,20 @@
+---
+
+  - hosts: Elastic-Dev1
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Check the Elastic Search service status
+        wait_for:
+          port: 9200
+          timeout: 10
+          state: started
+          msg: "Elastic Search server in Dev01 is down"
+        register: service_status
+
+      - name: print
+        debug:
+          var: service_status
+        
+  

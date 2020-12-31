@@ -1,0 +1,12 @@
+---
+
+  - hosts: KIBANA-Dev1
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Check the Kibana URL status
+        uri:
+          url: https://indevl-kibana01.dtc.dish.corp:5601/app/kibana
+          
+

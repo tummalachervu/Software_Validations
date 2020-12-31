@@ -1,0 +1,10 @@
+---
+
+  - hosts: localhost
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+
+      - name: Copying Rundeck ssh keys to Remote servers
+        shell: ssh-copy-id -i /home/ctummalachervu/.ssh/id_rsa.pub ctummalachervu@{{Server_ip}}

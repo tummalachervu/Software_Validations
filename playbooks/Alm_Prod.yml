@@ -1,0 +1,12 @@
+---
+
+  - hosts: localhost
+    connection: local 
+    gather_facts: False
+
+
+    tasks:
+      - name: Check the  ALM PROD status
+        uri:
+          url: "http://inprdw-hpalm01.dtc.dish.corp:8080/qcbin/"
+        register: result

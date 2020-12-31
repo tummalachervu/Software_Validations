@@ -1,0 +1,26 @@
+---
+
+  - hosts: all
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+
+      - name: Create a directory
+        file:
+          path: /apps/software
+          state: directory
+          mode: 0775
+      
+      - name: Moving the software to Remote server
+        copy:
+          src: deploy/kafka_2.11-2.0.0.tgz
+          dest: /apps/software/
+
+      - name: Unzipping the software
+        shell: cd /apps/software; tar -zxf kafka_2.11-2.0.0.tgz;
+
+      - name: Removing the Zip file from the directory
+        file:
+          path: /apps/software/kafka_2.11-2.0.0.tgz
+          state: absent

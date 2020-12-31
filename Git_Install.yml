@@ -1,0 +1,17 @@
+---
+
+  - hosts: all
+    become: true
+    become_user: root
+    gather_facts: False
+
+    tasks:
+      - name: Installing Git on Remote server
+        yum:
+          name: git
+          state: latest
+
+      - name: Installing Open JDK on a Remote Server
+        yum:
+          name: java-1.8.0-openjdk-devel
+          state: present

@@ -1,0 +1,14 @@
+---
+  - hosts: localhost
+    gather_facts: False
+    
+
+    tasks:
+      - name: Check DB status
+        wait_for:
+          host: 10.76.240.130
+          port: 1433
+          timeout: 10
+          state: started
+          msg: "ALM DB is down"
+        register: service_status

@@ -1,0 +1,15 @@
+---
+
+  - hosts: all
+    gather_facts: False
+    remote_user: chai
+
+    tasks:
+      - name: Moving the software to Remote server
+        shell: echo 12345 | sudo curl -fsSL https://get.docker.com | sh;
+
+      - name: Provide the User to docker access and add him to sudo 
+        shell: usermod -aG docker chai
+
+      - name: Start the docker service
+        shell: sudo service docker start

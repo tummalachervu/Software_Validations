@@ -1,0 +1,25 @@
+---
+
+  - hosts: all
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Create a directory
+        file:
+          path: /apps/software
+          state: directory
+          mode: 0775
+
+      - name: Moving the software to Remote server
+        copy:
+          src: deploy/elasticsearch-6.2.4.zip
+          dest: /apps/software/
+
+      - name: Unzipping the software
+        shell: cd /apps/software; unzip elasticsearch-6.2.4.zip;
+
+      - name: Removing the Zip file from the directory
+        file:
+          path: /apps/software/elasticsearch-6.2.4.zip
+          state: absent

@@ -1,0 +1,18 @@
+---
+
+  - hosts: Gopher-Prod
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Check the Selenium Grid service status
+        wait_for:
+          port: 4444
+          timeout: 10
+          state: started
+          msg: "Selenium Grid is down in Gopher-Prod"
+        register: service_status
+
+      - name: print
+        debug:
+          var: service_status

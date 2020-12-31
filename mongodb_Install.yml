@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become_user: root
+  become: yes
+  tasks:
+  
+  - name: Add MongoDB repository
+    copy:
+      src: deploy/mongodb-org-4.2.repo
+      dest: /etc/yum.repos.d/
+  - name: install mongodb
+    shell: sudo yum install -y mongodb-org
+
+  - name: Create DB path folder
+    file:
+      path: /opt/data/mongo
+      state: directory
+      owner: mongod
+      group: mongod
+      mode: 0755
+      recurse: yes
+
+  - name: Update Dbpath in mongodb.conf file
+    copy:
+      src: deploy/mongod.conf
+      dest: /etc/
+
+  - name: Linux deamon reload
+    shell: sudo systemctl daemon-reload
+  - name: mongo db start
+    shell: sudo systemctl start mongod
+    

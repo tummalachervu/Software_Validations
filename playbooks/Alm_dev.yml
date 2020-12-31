@@ -1,0 +1,12 @@
+---
+
+  - hosts: localhost
+    connection: local 
+    gather_facts: False
+
+
+    tasks:
+      - name: Check the  ALM status
+        uri:
+          url: "http://indevw-hpalm01.dtc.dish.corp:8080/qcbin/"
+        register: result

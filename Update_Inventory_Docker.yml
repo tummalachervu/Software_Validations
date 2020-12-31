@@ -1,0 +1,15 @@
+---
+
+  - hosts: localhost
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Going to Inventory Path
+        shell: cd /apps/software/Inv
+
+      - name: Remove the Docker- Inventory. Save Time 
+        shell: rm -f Docker
+
+      - name: Creating a new file
+        shell: echo {{Server_ip}} > /apps/software/Inv/Docker

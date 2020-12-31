@@ -1,0 +1,9 @@
+---
+
+  - hosts: Gopher-BE-Prod
+    become: true
+    
+    tasks:
+      - name: Rotate Tomcat PROD BE server Catalina.Out
+        shell: "/usr/sbin/logrotate /etc/logrotate.conf"
+        

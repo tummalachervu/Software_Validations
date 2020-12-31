@@ -1,0 +1,9 @@
+[Win]
+INDEVW-HPALM01.dtc.dish.corp
+
+[Win:vars]
+ansible_user=ALM-COM
+ansible_password=!X2Fm4qi%Ktoh9VN
+ansible_port = 5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore

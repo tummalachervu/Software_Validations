@@ -1,0 +1,17 @@
+---
+
+  - hosts: localhost
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Going to Inventory Path
+        shell: cd /apps/software/Inv
+
+      - name: Remove the Nexus- Inventory. Save Time 
+        shell: rm -f Nexus
+
+      - name: Creating a new file
+        shell: echo {{Server_ip}} > /apps/software/Inv/Nexus
+
+        

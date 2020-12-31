@@ -1,0 +1,45 @@
+---
+  - hosts: Win
+    gather_facts: False
+    
+    
+    tasks:
+
+#This is to validate ALM instance status    
+#      - name: Checking the Test ALM service status
+#        win_shell: |
+#          Test-NetConnection -ComputerName intstw-hpalm01.dtc.dish.corp -Port 8080
+#          exit
+        #win_uri:
+        #  url: http://intstw-hpalm01.dtc.dish.corp:8080/qcbin/
+        #  return_content: yes
+#        register: alm_result
+#        ignore_errors: yes
+
+      #- name: Fact 
+      #  set_fact:
+      #    mylist: "{{alm_result.stdout_lines | list }}"
+
+      #- name: Display the value of TcpTestSucceeded
+      #  debug:
+      #    msg: "{{ item |regex_search('\\d+') }}"
+      #  with_items: "{{mylist[8] }}"
+
+
+#This is to validate the DB instance status.
+
+      - name: Check the ALM DB service status
+        #win_command: powershell.exe -
+        win_shell: |
+          Test-NetConnection -ComputerName 10.76.240.130 -Port 1433
+          exit
+#        register: service_status
+
+# Conditional set to start the ALM only if it is down and DB should be up
+      
+      - name: Start The service if it is down
+        win_command: NET START "HPE Application Lifecycle Management"
+#        when: 
+#          - alm_result.rc != 0
+          #- service_status.rc == 0
+#        ignore_errors: yes

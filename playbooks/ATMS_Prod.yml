@@ -1,0 +1,12 @@
+---
+
+  - hosts: localhost
+    connection: local 
+    gather_facts: False
+
+
+    tasks:
+      - name: Check the  ATMS PROD status
+        uri:
+          url: "http://atms.dtc.dish.corp/Account/SignIn"
+        register: result

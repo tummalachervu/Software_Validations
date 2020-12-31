@@ -1,0 +1,15 @@
+---
+
+  - hosts: all
+    gather_facts: False
+    remote_user: ctummalachervu
+
+    tasks:
+      - name: Moving the software to Remote server
+        copy:
+          src: deploy/nexus-3.13.0-01-unix.tar.gz
+          dest: /apps/software/
+
+      - name: Unzipping the software
+        shell: cd /apps/software; tar -zxf nexus-3.13.0-01-unix.tar.gz;
+
